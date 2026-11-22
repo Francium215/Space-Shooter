@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwbn4fpcjbyy7"]
 
-[ext_resource type="Shader" uid="uid://b4740qhsuteaa" path="res://meteor.gdshader" id="1_bgiwl"]
+[ext_resource type="Shader" uid="uid://b4740qhsuteaa" path="res://Shaders/meteor.gdshader" id="1_bgiwl"]
 [ext_resource type="Script" uid="uid://caoxo6n7tigpv" path="res://Scripts/meteor.gd" id="1_wm1ig"]
 [ext_resource type="AudioStream" uid="uid://dbv03wqf4memw" path="res://audio/sfx_zap.ogg" id="2_wm1ig"]
 

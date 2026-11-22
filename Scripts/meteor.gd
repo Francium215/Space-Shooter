@@ -1,10 +1,11 @@
 extends Area2D
+class_name meteor
 
 var speed: int
 var rotation_speed: int
 var direction_x: float
 signal collision
-var can_collide := true
+
 
 var colors : Array[Color] = [Color.RED, Color.BLUE, Color.DARK_GREEN, Color.ORANGE]
 
@@ -27,26 +28,26 @@ func _ready():
 	speed = rng.randi_range(200, 500)
 	direction_x = rng.randf_range(-1, 1)
 	rotation_speed = rng.randi_range(40, 100)
-	
 
 func _process(delta):
 	position += Vector2(direction_x, 1.0) * speed * delta
 	rotation_degrees += rotation_speed * delta
 
-#when body is entered, send the signal "collision"
+#when body is entered, send the signal "collision" to level
 func _on_body_entered(_body) -> void:
-	if can_collide:
+	if Global.can_collide:
 		collision.emit()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.name.contains("Red") and $Sprite2D.material.get_shader_parameter("outline_color") == Color.RED:
+	
+	if area.color == Laser.Colors.Red and $Sprite2D.material.get_shader_parameter("outline_color") == Color.RED:
 		_kill(area)
-	if area.name.contains("Blue") and $Sprite2D.material.get_shader_parameter("outline_color") == Color.BLUE:
+	elif area.color == Laser.Colors.Blue and $Sprite2D.material.get_shader_parameter("outline_color") == Color.BLUE:
 		_kill(area)
-	if area.name.contains("Orange") and $Sprite2D.material.get_shader_parameter("outline_color") == Color.ORANGE:
+	elif area.color == Laser.Colors.Orange and $Sprite2D.material.get_shader_parameter("outline_color") == Color.ORANGE:
 		_kill(area)
-	if area.name.contains("Green") and $Sprite2D.material.get_shader_parameter("outline_color") == Color.DARK_GREEN:
+	elif area.color == Laser.Colors.Green and $Sprite2D.material.get_shader_parameter("outline_color") == Color.DARK_GREEN:
 		_kill(area)
 
 
@@ -54,6 +55,6 @@ func _kill(area):
 	area.queue_free()
 	$ExplosionSound.play()
 	$Sprite2D.hide()
-	can_collide = false
+	Global.can_collide = false
 	await get_tree().create_timer(0.5).timeout
 	queue_free()

@@ -43,23 +43,20 @@ func _on_meteor_collision():
 
 
 func _on_player_laser(pos, color) -> void:
+	var laser
 	if color == "red":
-		var laser = red_laser.instantiate()
-		$Lasers.add_child(laser)
-		laser.position = pos
-		laser.move_to(get_viewport().get_mouse_position())
-	if color == "blue":
-		var laser = blue_laser.instantiate()
-		$Lasers.add_child(laser)
-		laser.position = pos
-		laser.move_to(get_viewport().get_mouse_position())
-	if color == "green":
-		var laser = green_laser.instantiate()
-		$Lasers.add_child(laser)
-		laser.position = pos
-		laser.move_to(get_viewport().get_mouse_position())
-	if color == "orange":
-		var laser = orange_laser.instantiate()
-		$Lasers.add_child(laser)
-		laser.position = pos
-		laser.move_to(get_viewport().get_mouse_position())
+		laser = red_laser.instantiate()
+	elif color == "blue":
+		laser = blue_laser.instantiate()
+	elif color == "green":
+		laser = green_laser.instantiate()
+	elif color == "orange":
+		laser = orange_laser.instantiate()
+	else:
+		return
+	spawn_laser(laser, pos)
+
+func spawn_laser(laser, pos):
+	$Lasers.add_child(laser)
+	laser.position = pos
+	laser.move_to(get_viewport().get_mouse_position())

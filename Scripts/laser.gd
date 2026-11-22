@@ -1,8 +1,16 @@
+class_name Laser
 extends Area2D
 
 @export var speed = 500
 var direction
 
+enum Colors {
+	Red = 0,
+	Blue = 1,
+	Green = 2,
+	Orange = 3
+}
+@export var color: Colors
 
 func _ready():
 	var tween = create_tween()
