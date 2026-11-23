@@ -6,6 +6,8 @@ var blue_laser: PackedScene = load("res://Scenes/blue_laser.tscn")
 var green_laser: PackedScene = load("res://Scenes/green_laser.tscn")
 var orange_laser: PackedScene = load("res://Scenes/orange_laser.tscn")
 
+
+
 var health: int = 3
 
 func _ready():

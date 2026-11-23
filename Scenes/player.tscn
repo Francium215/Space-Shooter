@@ -42,13 +42,4 @@ stream = ExtResource("3_6t5aa")
 [node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1547174131]
 stream = ExtResource("4_vgqql")
 
-[node name="PowerupTimer" type="Timer" parent="." unique_id=1288823170]
-wait_time = 10.0
-autostart = true
-
-[node name="PowerupUptime" type="Timer" parent="." unique_id=81863399]
-wait_time = 5.0
-
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
-[connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_timer_timeout"]
-[connection signal="timeout" from="PowerupUptime" to="." method="_on_powerup_uptime_timeout"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Space Shooter Tutorial"
-run/main_scene="uid://cxu4y5qklem0k"
+run/main_scene="uid://vr81d2is4mto"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+laser=""
 
 [input]
 

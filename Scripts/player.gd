@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 500
+@export var speed := 40000
 var can_shoot: bool = true
 var blue: String = "res://graphics/ship/playerShip1_blue.png"
 var red: String = "res://graphics/ship/playerShip1_red.png"
@@ -9,8 +9,8 @@ var orange: String = "res://graphics/ship/playerShip1_orange.png"
 
 var color: String = "red"
 signal laser(pos, color)
-var can_powerup: bool = false
-
+#how long powerups stay up
+var powerup_time: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +19,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
-	velocity = direction * speed
+	velocity = direction * speed * _delta
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("change_color"):
@@ -42,10 +42,10 @@ func _process(_delta: float) -> void:
 		$LaserTimer.start()
 		$LaserSound.play()
 	
-	if Input.is_action_just_pressed("powerup") and can_powerup == true:
-		print("powerup")
-		powerup("invincibility")
-		can_powerup = false
+	if Input.is_action_just_pressed("powerup") and Global.can_powerup == true:
+		powerup(Global.what_powerup)
+		Global.can_powerup = false
+		get_tree().call_group('ui', 'set_powerup', "null")
 
 func play_collision_sound():
 	$DamageSound.play()
@@ -53,18 +53,12 @@ func play_collision_sound():
 func _on_laser_timer_timeout() -> void:
 	can_shoot = true
 
-func _on_powerup_timer_timeout() -> void:
-	can_powerup = true
-
 func powerup(type):
 	if type == "shoot_speed":
 		$LaserTimer.wait_time = .25
-		$PowerupUptime.start()
-	if type == "invincibility":
+		await get_tree().create_timer(powerup_time).timeout
+		$LaserTimer.wait_time = .5
+	if type == "shield":
 		Global.can_collide = false
-		$PowerupUptime.start()
-		pass
-
-func _on_powerup_uptime_timeout() -> void:
-	$LaserTimer.wait_time = .5
-	Global.can_collide = true
+		await get_tree().create_timer(powerup_time).timeout
+		Global.can_collide = true

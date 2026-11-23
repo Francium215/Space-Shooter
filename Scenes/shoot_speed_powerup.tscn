@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d1iv4e8yo76en"]
+
+[ext_resource type="Script" uid="uid://c517yica4q4cm" path="res://Scripts/powerups.gd" id="1_rt6ma"]
+[ext_resource type="Texture2D" uid="uid://c0bdj3higf2yq" path="res://graphics/powerupYellow_bolt.png" id="1_yard0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(33, 33)
+
+[node name="Shoot_Speed_Powerup" type="Node2D" unique_id=1850038068]
+script = ExtResource("1_rt6ma")
+power = 1
+
+[node name="PowerupBlueBolt" type="Sprite2D" parent="." unique_id=1020286156]
+texture_filter = 1
+texture = ExtResource("1_yard0")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2056877914]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1367644772]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

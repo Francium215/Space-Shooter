@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bn7x2mt5r7r0e" path="res://graphics/star/star2.png" id="4_wqkje"]
 [ext_resource type="PackedScene" uid="uid://bvngq5tlj2l7s" path="res://Scenes/ui.tscn" id="6_0f350"]
 [ext_resource type="AudioStream" uid="uid://dp8jjhoq6gmp0" path="res://audio/Sauropod Spotting - Kevin MacLeod (192k).mp3" id="7_8c0lf"]
+[ext_resource type="Script" uid="uid://c8kfaxvejtbrb" path="res://Scripts/powerup_spawner.gd" id="8_bvt00"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
@@ -237,6 +238,12 @@ autostart = true
 stream = ExtResource("7_8c0lf")
 volume_db = -11.15
 autoplay = true
+
+[node name="Powerups" type="Node2D" parent="." unique_id=1529759969]
+
+[node name="Marker2D" type="Marker2D" parent="Powerups" unique_id=1383182060]
+position = Vector2(261, 320)
+script = ExtResource("8_bvt00")
 
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
