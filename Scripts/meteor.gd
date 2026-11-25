@@ -4,9 +4,7 @@ var speed: int
 var rotation_speed: int
 var direction_x: float
 signal collision
-
-
-var colors : Array[Color] = [Color.RED, Color.BLUE, Color.DARK_GREEN, Color.ORANGE]
+var colors: Array[Color] = [Color.RED, Color.BLUE, Color.DARK_GREEN, Color.ORANGE]
 
 func _ready():
 	var meteor_color = randi_range(0,3)
@@ -37,7 +35,6 @@ func _on_body_entered(_body) -> void:
 		collision.emit()
 	queue_free()
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if !area.is_in_group("laser"):
 		return
@@ -51,11 +48,9 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area.color == Laser.Colors.Green and $Sprite2D.material.get_shader_parameter("outline_color") == Color.DARK_GREEN:
 		_kill(area)
 
-
 func _kill(area):
+	Global.broken_meteors += 1
 	area.queue_free()
 	$ExplosionSound.play()
-	$Sprite2D.hide()
-	Global.can_collide = false
-	await get_tree().create_timer(0.5).timeout
+	$ExplosionSound.reparent(get_tree().current_scene)
 	queue_free()

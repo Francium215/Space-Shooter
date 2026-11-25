@@ -1,7 +1,7 @@
 class_name Laser
 extends Area2D
 
-@export var speed = 500
+@export var speed = 1000
 var direction
 
 enum Colors {
@@ -19,7 +19,8 @@ func _ready():
 
 func _process(delta):
 	global_position += direction * speed * delta
-	
+
 func move_to(pos):
 	direction = (pos - global_position).normalized()
-	
+	look_at(pos + direction)
+	rotate(PI /2)

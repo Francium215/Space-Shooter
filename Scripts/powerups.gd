@@ -5,7 +5,6 @@ enum Power_Type{
 }
 @export var power: Power_Type
 
-
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	Global.can_powerup = true
 	if power == Power_Type.Shield:

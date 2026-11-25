@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
-@export var speed := 40000
+@export var speed: int = 40000
 var can_shoot: bool = true
 var blue: String = "res://graphics/ship/playerShip1_blue.png"
 var red: String = "res://graphics/ship/playerShip1_red.png"
 var green: String = "res://graphics/ship/playerShip1_green.png"
 var orange: String = "res://graphics/ship/playerShip1_orange.png"
 
+var how_much_damage: int = 1
 var color: String = "red"
 signal laser(pos, color)
-#how long powerups stay up
-var powerup_time: int = 5
+var powerup_uptime: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,6 +48,11 @@ func _process(_delta: float) -> void:
 		get_tree().call_group('ui', 'set_powerup', "null")
 
 func play_collision_sound():
+	how_much_damage += 1
+	var damage_texture: String = "res://graphics/playerShip1_damage" + str(how_much_damage) + ".png"
+	if how_much_damage >= 4:
+		return
+	$Damage.texture = load(damage_texture)
 	$DamageSound.play()
 
 func _on_laser_timer_timeout() -> void:
@@ -56,9 +61,9 @@ func _on_laser_timer_timeout() -> void:
 func powerup(type):
 	if type == "shoot_speed":
 		$LaserTimer.wait_time = .25
-		await get_tree().create_timer(powerup_time).timeout
+		await get_tree().create_timer(powerup_uptime).timeout
 		$LaserTimer.wait_time = .5
 	if type == "shield":
 		Global.can_collide = false
-		await get_tree().create_timer(powerup_time).timeout
+		await get_tree().create_timer(powerup_uptime).timeout
 		Global.can_collide = true

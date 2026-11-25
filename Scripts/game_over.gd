@@ -6,5 +6,8 @@ func _ready():
 	$CenterText/VBoxContainer/Score.text = $CenterText/VBoxContainer/Score.text + str(Global.score)
 
 func _input(event):
-	if event.is_action_pressed('shoot'):
+	if event.is_action_pressed('retry'):
 		get_tree().change_scene_to_packed(level_scene)
+
+func _on_close_game_pressed() -> void:
+	get_tree().quit()

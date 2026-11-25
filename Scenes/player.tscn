@@ -42,4 +42,6 @@ stream = ExtResource("3_6t5aa")
 [node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1547174131]
 stream = ExtResource("4_vgqql")
 
+[node name="Damage" type="Sprite2D" parent="." unique_id=1310266318]
+
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

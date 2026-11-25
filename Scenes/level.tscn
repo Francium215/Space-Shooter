@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d8mmr73deh2g" path="res://Scenes/player.tscn" id="2_81xng"]
 [ext_resource type="Texture2D" uid="uid://bw422m5aq844o" path="res://graphics/star/star1.png" id="4_81xng"]
 [ext_resource type="Texture2D" uid="uid://bn7x2mt5r7r0e" path="res://graphics/star/star2.png" id="4_wqkje"]
-[ext_resource type="PackedScene" uid="uid://bvngq5tlj2l7s" path="res://Scenes/ui.tscn" id="6_0f350"]
+[ext_resource type="PackedScene" uid="uid://bvngq5tlj2l7s" path="res://Scenes/UI_Menus/ui.tscn" id="6_0f350"]
 [ext_resource type="AudioStream" uid="uid://dp8jjhoq6gmp0" path="res://audio/Sauropod Spotting - Kevin MacLeod (192k).mp3" id="7_8c0lf"]
 [ext_resource type="Script" uid="uid://c8kfaxvejtbrb" path="res://Scripts/powerup_spawner.gd" id="8_bvt00"]
 

@@ -6,13 +6,21 @@ var blue_laser: PackedScene = load("res://Scenes/blue_laser.tscn")
 var green_laser: PackedScene = load("res://Scenes/green_laser.tscn")
 var orange_laser: PackedScene = load("res://Scenes/orange_laser.tscn")
 
-
-
+@export var broken_meteors_objective: int = 5
 var health: int = 3
 
+func _process(_delta: float) -> void:
+	get_tree().call_group('ui', "update_meteors_broken")
+	if Global.broken_meteors >= broken_meteors_objective:
+		objective_reached()
+
+func objective_reached():
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/UI_Menus/win_screen.tscn")
+
 func _ready():
-	#health ui
+	Global.broken_meteors = 0
 	get_tree().call_group('ui', 'set_health', health)
+	
 	# stars
 	var size := get_viewport().get_visible_rect().size
 	var rng := RandomNumberGenerator.new()
@@ -40,7 +48,7 @@ func _on_meteor_collision():
 	get_tree().call_group('ui', 'set_health', health)
 	if health <= 0:
 		# it just doesnt like the "change_scene_to_file" action without call deferred idk what that really means though
-		get_tree().call_deferred("change_scene_to_file", "res://Scenes/game_over.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://Scenes/UI_Menus/game_over.tscn")
 	$Player.play_collision_sound()
 
 
