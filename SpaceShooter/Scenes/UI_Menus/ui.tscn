@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bvngq5tlj2l7s"]
+
+[ext_resource type="Script" uid="uid://b241o4353w85h" path="res://SpaceShooter/Scripts/ui.gd" id="1_6myf2"]
+[ext_resource type="FontFile" uid="uid://b5clxslkw3m7e" path="res://SpaceShooter/graphics/font/kenvector_future.ttf" id="2_txwja"]
+
+[node name="UI" type="CanvasLayer" unique_id=1695655024 groups=["ui"]]
+script = ExtResource("1_6myf2")
+
+[node name="Score" type="MarginContainer" parent="." unique_id=1985846595]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -266.0
+offset_right = 266.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Score" unique_id=423770134]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Score/VBoxContainer" unique_id=448122879]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_txwja")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+
+[node name="Meteors_Killed" type="Label" parent="Score/VBoxContainer" unique_id=496532084]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_txwja")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="Health Icons" type="MarginContainer" parent="." unique_id=887646039]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 181.0
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Health Icons" unique_id=152319007]
+layout_mode = 2
+
+[node name="Powerup" type="MarginContainer" parent="." unique_id=1831054402]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Powerup" unique_id=1402056810]
+layout_mode = 2
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1745584811]
+autostart = true
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

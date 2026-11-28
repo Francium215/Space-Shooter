@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://vr81d2is4mto"]
+
+[ext_resource type="Script" uid="uid://dgylcmqyjlrqx" path="res://SpaceShooter/Scripts/start_screen.gd" id="1_g8a7y"]
+[ext_resource type="FontFile" uid="uid://b5clxslkw3m7e" path="res://SpaceShooter/graphics/font/kenvector_future.ttf" id="2_os2u8"]
+
+[node name="Start_screen" type="Control" unique_id=232372001]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g8a7y")
+
+[node name="Panel" type="Panel" parent="." unique_id=1746567018]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel" unique_id=752183922]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -20.0
+offset_right = 44.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer" unique_id=1328996272]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer" unique_id=1864319490]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Main Menu"
+
+[node name="Button" type="Button" parent="Panel/CenterContainer/VBoxContainer" unique_id=1683567040]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Start Space Shooter"
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=655966673]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="CloseGame" type="Button" parent="MarginContainer2" unique_id=1351511280]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_os2u8")
+theme_override_font_sizes/font_size = 25
+text = "Close Game"
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/CloseGame" to="." method="_on_close_game_pressed"]
